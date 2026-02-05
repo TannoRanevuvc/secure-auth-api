@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# VSCode
+.vscode/
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database
+*.sqlite3
+
+# Logs
+*.log
+
+# PyCharm
+.idea/
+
+# Test coverage
+htmlcov/
+.coverage
+
+# Migrations (если используете Alembic)
+alembic/versions/
+
+# Jupyter
+.ipynb_checkpoints/
