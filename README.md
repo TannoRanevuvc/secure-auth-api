@@ -15,14 +15,17 @@ secure-auth-api/
 │  .env
 │  README.md
 └─ app/
-    │  main.py           # Точка входа FastAPI
-    │  models.py         # Модели SQLAlchemy и схемы Pydantic
-    │  database.py       # Подключение к БД и создание таблиц
-    │  security.py       # Хеширование и проверка паролей
-    └─ api/
-        │  users.py      # Эндпоинты для пользователей
-        │  ...
-```
+   │  main.py           # Точка входа FastAPI
+   │  models.py         # Модели SQLAlchemy (User, LoginAttempt)
+   │  schemas.py        # Pydantic-схемы
+   │  database.py       # Подключение к БД и создание таблиц
+   │  security.py       # Хеширование и проверка паролей
+   └─ api/
+      │  users.py      # Эндпоинты для пользователей, bruteforce protection
+   tests/
+      │  auth_test.py      # Автотесты на регистрацию, логин, лимиты
+      │  conftest.py       # Фикстуры для тестовой среды
+   ```
 
 ## Быстрый старт
 1. Клонируйте репозиторий и перейдите в папку проекта.
