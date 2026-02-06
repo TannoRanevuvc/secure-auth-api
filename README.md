@@ -36,9 +36,14 @@ secure-auth-api/
    ```sh
    pip install -r requirements.txt
    ```
-4. Создайте файл `.env` в корне проекта и добавьте строку подключения к БД:
+4. Создайте файл `.env` в корне проекта.
    ```
    DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+   SECRET_KEY=supersecretkey
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+   TIME_WINDOW_MINUTES=10
+   USER_LOGIN_ATTEMPT_LIMIT=5
    ```
 5. Запустите сервер:
    ```sh

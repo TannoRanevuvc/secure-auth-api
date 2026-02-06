@@ -1,5 +1,5 @@
 # Pydantic-схемы для валидации данных и сериализации/десериализации
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import datetime
 
 class UserCreate(BaseModel): # схема для создания юзера
@@ -11,5 +11,4 @@ class UserRead(BaseModel): # схема для чтения юзера (как �
     email: EmailStr
     created_at: datetime
 
-    class Config:
-        orm_mode = True # позволяет пайдентик работать с орм
+    model_config = ConfigDict(from_attributes=True) # позволяет пайдентик работать с орм

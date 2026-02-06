@@ -1,8 +1,8 @@
 # Модели SQLAlchemy
 
-from sqlalchemy import Column, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
+from sqlalchemy import Column, String, DateTime, Boolean
+from sqlalchemy.orm import declarative_base
+from datetime import datetime, timezone
 from pydantic import BaseModel, EmailStr
 
 Base = declarative_base() # Базовый класс для всех моделей SQLAlchemy
@@ -12,16 +12,12 @@ class User(Base): # Модель пользователя для хранени�
     id = Column(String, primary_key=True, index=True)
     email = Column(String, unique=True, nullable=False, index=True)
     password_hash = Column(String, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
-class UserCreate(BaseModel): # схема для создания юзера
-    email: EmailStr
-    password: str
-
-class UserRead(BaseModel): # схема для чтения юзера (как будет отвечать апи)
-    id: str
-    email: EmailStr
-    created_at: datetime
-
-    class Config:
-        orm_mode = True # позволяет пайдентик работать с орм
+class LoginAttempt(Base):  # Модель для логов попыток входа
+    __tablename__ = 'login_attempts'
+    id = Column(String, primary_key=True, index=True)
+    email = Column(String, nullable=False, index=True)
+    ip_address = Column(String, nullable=False)
+    success = Column(Boolean, nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
